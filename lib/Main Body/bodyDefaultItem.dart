@@ -14,7 +14,7 @@ class _DefaultItemState extends State<DefaultItem> {
       margin: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Colors.black87
+          color: Colors.white70
       ),
       child: Container(
           height: 250,
