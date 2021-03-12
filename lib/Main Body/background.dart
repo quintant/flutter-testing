@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 
@@ -22,8 +24,16 @@ class _MyBackgroundState extends State<MyBackground> with SingleTickerProviderSt
   void change() {
     setState(() {
       index = index + 1;
-      bottomColor = colorList[index % colorList.length];
-      topColor = colorList[(index + 1) % colorList.length];
+      bottomColor = Color.fromARGB(
+          255,
+          Random().nextInt(255),
+          Random().nextInt(255),
+          Random().nextInt(255));
+      topColor = Color.fromARGB(
+          255,
+          Random().nextInt(255),
+          Random().nextInt(255),
+          Random().nextInt(255));
     });
   }
 

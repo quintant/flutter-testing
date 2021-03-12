@@ -1,11 +1,18 @@
 // import 'dart:html';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Drawer%20Widgets/Drawer.dart';
 import 'package:myapp/Drawer%20Widgets/drawer_bar.dart';
+import 'package:myapp/LoginScreen/login.dart';
+import 'package:myapp/Main%20Body/SimpleBackground.dart';
 import 'package:myapp/Main%20Body/background.dart';
 import 'package:myapp/Main%20Body/bodyDefaultItem.dart';
+import 'package:myapp/Main%20Body/spiningIcon.dart';
+import 'package:http/http.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -19,8 +26,15 @@ class MyApp extends StatelessWidget {
       title: 'Yo is my website',
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.transparent,
-          canvasColor: Color.fromRGBO(0, 0, 0, 0)),
+          scaffoldBackgroundColor: Color.fromARGB(255, 70, 68, 68),
+          textTheme: GoogleFonts.latoTextTheme(),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Color.fromARGB(255, 70, 68, 68),
+            elevation: 4,
+            centerTitle: true,
+            titleTextStyle: TextStyle(fontSize: 60),
+          ),
+      ),
       home: MyHomePage(title: 'Welcome'),
     );
   }
@@ -50,50 +64,19 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      MyBackground(),
-      Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Container(
-            alignment: Alignment.center,
-            color: Colors.transparent,
-            child: Text(
-              widget.title,
-              style: TextStyle(fontSize: 40),
-            ),
-          ),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
-          leading: DrawerBar(),
-          backgroundColor: Colors.white70,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(
+          widget.title,
         ),
-        drawer: Theme(
-            data: Theme.of(context),
-            child: Drawer(
-              child: myDrawer(),
-            )),
-        body: Container(
-          padding: EdgeInsets.all(10),
-          alignment: Alignment.topCenter,
-          child: ListView(
-            children: <Widget>[
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-              DefaultItem(),
-            ],
-          ),
-        ),
+
       ),
-    ]);
+      body: Center(
+          child: LoginX(
+
+          ))
+    );
   }
 }
