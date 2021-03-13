@@ -90,8 +90,8 @@ class Guild {
 
 Future<Guild> fetchGuild(String token) async {
   final response = await http.get(
-      Uri.https('https://discord.com/api', ''),
-    headers: {HttpHeaders.authorizationHeader: "Authorization: Bot " + token},
+      Uri.https('discord.com', '/api/v7/guilds/240952776085995521'),
+    headers: {'Authorization': 'Bot ' + token},
   );
 
   if (response.statusCode == 200) {

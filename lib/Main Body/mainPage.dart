@@ -37,6 +37,7 @@ class _MainPageState extends State<MainPage> {
       body: Stack(
         children: [
           Container(
+            alignment: Alignment.bottomCenter,
             child: ButtonBar(
               alignment: MainAxisAlignment.center,
               children: [
@@ -51,6 +52,17 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
+          FutureBuilder(
+              future: guild,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return Text(snapshot.data.name);
+              },
+          )
         ],
       ),
     );
