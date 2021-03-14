@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:myapp/Bot/botMain.dart';
+import 'package:myapp/Bot/classes/partialGuild.dart';
 import 'package:myapp/Buttons/DarkButton.dart';
 import 'package:myapp/Main%20Body/ServerListBuilder.dart';
 
@@ -15,13 +16,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final int colorChange = 40;
 
-  Future<Guild> guild;
   String token;
 
   @override
   void initState() {
     super.initState();
-    guild = fetchGuild(widget.token);
     token = widget.token;
   }
 
@@ -33,38 +32,15 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text('First Route'),
         automaticallyImplyLeading: false,
+        leadingWidth: 100,
+        leading: TextButton(
+          child: Text('Logout'),
+          onPressed: () => {
+            Navigator.pop(context),
+          },
+        ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: [
-                MaterialButton(
-                  child: Text('Logout'),
-                  color: Color.fromARGB(255, 70-colorChange, 68-colorChange, 68-colorChange),
-                  onPressed: () => {
-                    Navigator.pop(context),
-                  },
-                ),
-                DarkButton(text: token)
-              ],
-            ),
-          ),
-          FutureBuilder(
-              future: guild,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-                return Text(snapshot.data.name);
-              },
-          )
-        ],
-      ),
+      body: guildList(token),
     );
   }
 }
