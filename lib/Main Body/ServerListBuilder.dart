@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:myapp/Bot/botMain.dart';
 import 'package:myapp/Bot/classes/partialGuild.dart';
-import 'package:nyxx/nyxx.dart';
+import 'package:myapp/Guild%20Details/GuildMain.dart';
+
+import '../MyPageRoute.dart';
 
 Widget guildList(token) {
   return FutureBuilder(
@@ -10,29 +12,34 @@ Widget guildList(token) {
       if (projectSnap.connectionState == ConnectionState.none &&
           projectSnap.hasData == null) {
         //print('project snapshot data is: ${projectSnap.data}');
-        return CircularProgressIndicator();
+        return Expanded(child: Center(child: CircularProgressIndicator(),));
+
       }
       return ListView.builder(
-        itemCount: projectSnap.data.length,
+        itemCount: projectSnap.data?.length,
         itemBuilder: (context, index) {
           PartialGuild currGuild = projectSnap.data[index];
+          if (currGuild == null) {
+            return Expanded(child: Center(child: CircularProgressIndicator(),));
+          }
           return InkWell(
-            onTap: () {},
+            onTap: () {Navigator.push(
+                context,
+                FadeRoute(
+                    page: GuildMain(
+                      token: token,
+                      guildID: currGuild.id,
+                    )));},
             mouseCursor: SystemMouseCursors.click,
             child: Container(
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.blue,
-                boxShadow: [BoxShadow(
-                  spreadRadius: 3,
-                  blurRadius: 3,
-                  offset: Offset(5, 5),
-                  color: Colors.black38
-                )]
+                color: Color.fromARGB(0xf0, 30, 30, 30),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     margin: EdgeInsets.all(5),
@@ -51,13 +58,17 @@ Widget guildList(token) {
                           '.png')),
                     ),
                   ),
-                  Text(
-                      currGuild.name,
-                    style: TextStyle(
-                      fontSize: 20
+                  Spacer(),
+                  Expanded(
+                    flex: 10,
+                    child: Text(
+                        currGuild.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                      ),
                     ),
                   ),
-                  Text(currGuild.id)
                 ],
               ),
             ),

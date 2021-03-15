@@ -25,9 +25,6 @@ class PartialGuild {
 List<PartialGuild> parseResponse(String responseBody) {
   final parsed = jsonDecode(responseBody);
   // final parsed = jsonDecode(responseBody);
-  print(parsed);
-  print(parsed.runtimeType);
-  print(parsed.length);
   List<PartialGuild> toRet = [];
   for (var i = 0; i< parsed.length; i++) {
     toRet.add(PartialGuild(
@@ -36,9 +33,6 @@ List<PartialGuild> parseResponse(String responseBody) {
       icon: parsed[i]['icon'],
     ));
   }
-  print(toRet);
-  print(toRet.runtimeType);
-
   return toRet;
 }
 
@@ -55,7 +49,6 @@ Future<List<PartialGuild>> fetchPartialGuilds(String token) async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     List<PartialGuild> toRet = parseResponse(response.body);
-    print('-------------------------------------');
     return toRet;
   } else {
     // If the server did not return a 200 OK response,

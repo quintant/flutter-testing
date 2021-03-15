@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
     // sleep(Duration(seconds: 10));
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Route'),
+        title: Text('Available servers'),
         automaticallyImplyLeading: false,
         leadingWidth: 100,
         leading: TextButton(

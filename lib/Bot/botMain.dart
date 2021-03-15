@@ -10,6 +10,8 @@ class Guild {
   final String description;
   final void splash;
   final void discoverySplash;
+  final int aproxMemberCount;
+  final int aproxPresenceCount;
   final List features;
   final List emojis;
   final String banner;
@@ -36,40 +38,40 @@ class Guild {
   final String rulesChannelID;
   final String publicUpdatesChannelID;
 
-
-  Guild({
-    this.id,
-    this.name,
-    this.icon,
-    this.description,
-    this.splash,
-    this.discoverySplash,
-    this.features,
-    this.emojis,
-    this.banner,
-    this.ownerID,
-    this.applicationID,
-    this.region,
-    this.afkChannelID,
-    this.afkTimeout,
-    this.systemChannelID,
-    this.widgetEnabled,
-    this.widgetChannelID,
-    this.verificationLevel,
-    this.roles,
-    this.defaultMessageNotifications,
-    this.mfaLevel,
-    this.explicitContentFilter,
-    this.maxPresences,
-    this.maxMembers,
-    this.vanityUrlCode,
-    this.premiumTier,
-    this.premiumSubscriptionCount,
-    this.systemChannelFlags,
-    this.preferredLocale,
-    this.rulesChannelID,
-    this.publicUpdatesChannelID
-  });
+  Guild(
+      {this.id,
+      this.name,
+      this.icon,
+      this.description,
+      this.splash,
+      this.discoverySplash,
+      this.aproxMemberCount,
+      this.aproxPresenceCount,
+      this.features,
+      this.emojis,
+      this.banner,
+      this.ownerID,
+      this.applicationID,
+      this.region,
+      this.afkChannelID,
+      this.afkTimeout,
+      this.systemChannelID,
+      this.widgetEnabled,
+      this.widgetChannelID,
+      this.verificationLevel,
+      this.roles,
+      this.defaultMessageNotifications,
+      this.mfaLevel,
+      this.explicitContentFilter,
+      this.maxPresences,
+      this.maxMembers,
+      this.vanityUrlCode,
+      this.premiumTier,
+      this.premiumSubscriptionCount,
+      this.systemChannelFlags,
+      this.preferredLocale,
+      this.rulesChannelID,
+      this.publicUpdatesChannelID});
 
   factory Guild.fromJson(Map<String, dynamic> json) {
     return Guild(
@@ -77,6 +79,8 @@ class Guild {
       name: json['name'],
       icon: json['icon'],
       description: json['description'],
+      aproxMemberCount: json['approximate_member_count'],
+      aproxPresenceCount: json['approximate_presence_count'],
       emojis: json['emojis'],
       banner: json['banner'],
       ownerID: json['owner_id'],
@@ -88,10 +92,16 @@ class Guild {
   }
 }
 
-Future<Guild> fetchGuild(String token) async {
+Future<Guild> fetchGuild(String token, String guildID) async {
+  final qParam = {
+    'with_counts?': 'true',
+  };
   final response = await http.get(
-      Uri.https('discord.com', '/api/v7/guilds/240952776085995521'),
-    headers: {'Authorization': 'Bot ' + token},
+    Uri.https(
+        'www.discord.com', '/api/v7/guilds/' + guildID, qParam),
+    headers: {
+      'Authorization': 'Bot ' + token,
+    },
   );
 
   if (response.statusCode == 200) {

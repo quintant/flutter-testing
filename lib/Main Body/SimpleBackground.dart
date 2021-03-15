@@ -9,7 +9,7 @@ class _SimpleBackgroundState extends State<SimpleBackground> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 70+10, 68+10, 68+10),
+      color: Color.fromARGB(255, 70, 68, 68),
     );
   }
 }

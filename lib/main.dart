@@ -26,10 +26,10 @@ class MyApp extends StatelessWidget {
       title: 'Yo is my website',
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Color.fromARGB(255, 70, 68, 68),
+          scaffoldBackgroundColor: Color.fromARGB(0xff, 15, 15, 15),
           textTheme: GoogleFonts.latoTextTheme(),
           appBarTheme: AppBarTheme(
-            backgroundColor: Color.fromARGB(255, 70, 68, 68),
+            backgroundColor: Color.fromARGB(255, 20, 20, 20),
             elevation: 4,
             centerTitle: true,
             titleTextStyle: TextStyle(fontSize: 60),
