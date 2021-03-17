@@ -45,35 +45,43 @@ class _GuildMembersListState extends State<GuildMembersList> {
                       borderRadius: BorderRadius.circular(10),
                       color: Color.fromARGB(0x70, 30, 30, 30),
                     ),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image.network(
-                            'https://cdn.discordapp.com/avatars/' +
-                                member.user?.id.toString() +
-                                '/' +
-                                member.user.avatar.toString() +
-                                '.png',
-                            errorBuilder:
-                                (context, exception, stackTrace) {
-                              return Image.network(
-                                  'https://e7.pngegg.com/pngimages/408/238/png-clipart-computer-icons-discord-logo-discord-purple-angle-thumbnail.png');
-                            },
+                    child: InkWell(
+                      onTap: (){},
+                      hoverColor: Colors.black54,
+                      borderRadius: BorderRadius.circular(10),
+                      splashColor: Colors.black,
+                      highlightColor: Colors.black,
+                      child: Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network(
+                              'https://cdn.discordapp.com/avatars/' +
+                                  member.user?.id.toString() +
+                                  '/' +
+                                  member.user.avatar.toString() +
+                                  '.png',
+                              errorBuilder:
+                                  (context, exception, stackTrace) {
+                                return Image.network(
+                                  'https://cdn.iconscout.com/icon/free/png-512/discord-3-569463.png',
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                        Expanded(
-                          flex: 10,
-                          child: Text(
-                            member.user.username,
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white),
+                          Spacer(),
+                          Expanded(
+                            flex: 10,
+                            child: Text(
+                              member.user.username,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 }),

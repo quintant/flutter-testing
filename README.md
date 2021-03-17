@@ -1,16 +1,20 @@
 # myapp
 
-A new Flutter project.
+A flutter program that enables you to do simple actions on discord as a bot
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+You need to create a bot on discord and copy the token from there and paste it into the field.
 
-A few resources to get you started if this is your first Flutter project:
+Then you can log in as a bot
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Current features:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Log in
+- View all servers/guilds the bot has access to
+- View all members in selected server
+- View all channels in selected server
+
+This is all made using flutter and the discord api.
+
+I am making this more as a practice in using APIs and Flutter.

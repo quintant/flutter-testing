@@ -81,7 +81,6 @@ Future<List<GuildChannel>> fetchGuildChannelList(String token, guildID) async {
       'Authorization': 'Bot ' + token,
     },
   );
-  print(response.body);
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.

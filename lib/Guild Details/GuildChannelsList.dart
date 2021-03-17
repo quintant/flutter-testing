@@ -27,7 +27,12 @@ class _GuildChannelsListState extends State<GuildChannelsList> {
       builder: (context, snapshot) {
         List<GuildChannel> channels = snapshot.data;
         if (!snapshot.hasData) {
-          return Text('Loading', style: TextStyle(color: Colors.amber),);
+          return Column(
+            children: [
+              Text('Loading', style: TextStyle(color: Colors.amber),),
+              CircularProgressIndicator()
+            ],
+          );
         }
         return Container(
           child: RawScrollbar(
@@ -46,30 +51,39 @@ class _GuildChannelsListState extends State<GuildChannelsList> {
                       borderRadius: BorderRadius.circular(10),
                       color: Color.fromARGB(0x70, 30, 30, 30),
                     ),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Icon(Icons.all_inbox_outlined, color: Colors.pink,)
+                    child: InkWell(
+                      onTap: (){},
+                      hoverColor: Colors.black54,
+                      borderRadius: BorderRadius.circular(10),
+                      splashColor: Colors.black,
+                      highlightColor: Colors.black,
+                      child: Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network(
+                              'https://cdn0.iconfinder.com/data/icons/30-hardware-line-icons/64/Server-512.png'
+                            )
 
-                        ),
-                        Divider(indent: 10,),
-                        Text(
-                          channel.name,
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white),
-                        ),
-                        Divider(indent: 3,),
-                        Text(
-                          channel.type == 0? 'Text': 'Voice',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 10
                           ),
-                        )
-                      ],
+                          Divider(indent: 10,),
+                          Text(
+                            channel.name,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white),
+                          ),
+                          Divider(indent: 3,),
+                          Text(
+                            channel.type == 0? 'Text': 'Voice',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 10
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 }),
